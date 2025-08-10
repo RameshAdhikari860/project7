@@ -1,10 +1,15 @@
 
 import express from "express";
-import { createArticle } from "../controller/articleController.js";
+import { createArticle, deleteArticle, getAllArticle, getSingleArticle } from "../controller/articleController.js";
 
 const router = express.Router()
 
-router.post('/create',createArticle)
+router.post('/',createArticle)
+
+//day 4 from here
+router.get('/',getAllArticle)
+router.get('/:id',getSingleArticle)
+router.delete('/:id',deleteArticle)
 
 
 

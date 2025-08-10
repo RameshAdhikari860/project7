@@ -11,6 +11,7 @@ app.use(express.json())
 
 connectDb()
 
+// localhost:3500/article/create
 
 //test create article
 app.use('/article',articleRoutes)

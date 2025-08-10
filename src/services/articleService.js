@@ -1,8 +1,8 @@
-
+import Article from "../model/Article.js"
 
 const createArticle = async (data)=>{
 
-    const result = await Aritcle.create({
+    const result = await Article.create({
         title: data.title,
         subTitle :data.subTitle,
         description :data.description,
@@ -12,7 +12,28 @@ const createArticle = async (data)=>{
     return result
 }
 
-export default {createArticle}
+// Day four from here
+
+const getAllArticle = async()=>{
+  return await Article.find()
+}
+
+
+const getSingleArticle = async (id)=>{
+
+    return await Article.findById(id)
+    // helloisfafaf
+}
+
+const  deleteArticle = async (id)=>{
+
+    return await Article.findByIdAndDelete(id)
+}
+
+
+export default {createArticle,getAllArticle,getSingleArticle,deleteArticle}
+
+
 
 // { title,subTitle,description,artist}
 // data = { title:'adfasdfadf',subTitle:"adfasdf",description:"adasd",artist:"dasfasd"}

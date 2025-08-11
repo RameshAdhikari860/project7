@@ -18,6 +18,7 @@ app.use('/article',articleRoutes)
 
 
 
+
 const port = 3500
 app.listen(port,()=>{
     console.log("server started at port ",port)

@@ -22,7 +22,7 @@ const getAllArticle = async()=>{
 const getSingleArticle = async (id)=>{
 
     return await Article.findById(id)
-    // helloisfafaf
+    
 }
 
 const  deleteArticle = async (id)=>{
@@ -31,7 +31,13 @@ const  deleteArticle = async (id)=>{
 }
 
 
-export default {createArticle,getAllArticle,getSingleArticle,deleteArticle}
+const updateArticle =  async (id,article)=>{
+
+   return await Article.findByIdAndUpdate(id,article,{new:true})
+}
+
+
+export default {createArticle,getAllArticle,getSingleArticle,deleteArticle,updateArticle}
 
 
 

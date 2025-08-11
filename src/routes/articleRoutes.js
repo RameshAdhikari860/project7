@@ -1,6 +1,6 @@
 
 import express from "express";
-import { createArticle, deleteArticle, getAllArticle, getSingleArticle } from "../controller/articleController.js";
+import { createArticle, deleteArticle, getAllArticle, getSingleArticle, updateArticle } from "../controller/articleController.js";
 
 const router = express.Router()
 
@@ -10,7 +10,7 @@ router.post('/',createArticle)
 router.get('/',getAllArticle)
 router.get('/:id',getSingleArticle)
 router.delete('/:id',deleteArticle)
-
+router.patch('/update/:id',updateArticle)
 
 
 export default router;

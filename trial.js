@@ -1,30 +1,60 @@
 
 
 
-const sum = (a,b)=>{
-    console.log(a+b)
-    return a+b
+
+
+
+
+const  article =   (hello)=>{
+
+    console.log(hello.email)
+    console.log(hello.password)
+
 }
 
 
 
 
-function sub(a,b){
-    return a-b
+const  req =  {
+    body : {
+        email : "hello@gmail.com",
+        password : "fadfi2j"
+    },
+    params : {
+        id : 'fasdfasfas'
+    },
+    headers : {
+        authorization : "sdfasdf"
+    },
+    file : {
+        image : "asfsadfsa"
+    }
 }
-sum(3,5)
 
-// export default {sub,sum}
+const hello= req.body
 
-// sum(7,1)
-// sum(11,22)
 
-// sum(837,232)
 
-const sumReturn = sum(20,30)
 
-// console.log(sumReturn)
 
-// const addAgain =  + 
+article(hello)
+
+
+article ({
+    email : "ramesh" ,
+     password : "hello"
+    })
+
+
+
+
+
+
+
+    
+
+
+
+
 
 

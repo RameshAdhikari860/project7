@@ -10,7 +10,10 @@ router.post('/',createArticle)
 router.get('/',getAllArticle)
 router.get('/:id',getSingleArticle)
 router.delete('/:id',deleteArticle)
-router.patch('/update/:id',updateArticle)
+router.patch('/:id',updateArticle)
+
+
+
 
 
 export default router;

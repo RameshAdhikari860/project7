@@ -1,6 +1,7 @@
 import express from 'express'
 import { connectDb } from './config/database.js'
 import articleRoutes from './routes/articleRoutes.js'
+import authRoutes from './routes/authRoute.js'
 
 
 const app = express()
@@ -15,6 +16,11 @@ connectDb()
 
 //test create article
 app.use('/article',articleRoutes)
+
+app.use('/auth',authRoutes)
+
+
+
 
 
 

@@ -1,23 +1,49 @@
-import User from "../model/User.js"
+import User from "../model/User.js";
+import bcrypt from "bcrypt";
 
-const registerService = async(data)=>{
+const registerService = async ({ email, password, phone, fullName }) => {
+  const userWithEmailExist = await User.findOne({ email: email });
 
-        const userWithEmailExist = await User.findOne({email:data.email})
+  if (userWithEmailExist) {
+    throw new Error("User with this email Already Exists");
+  }
 
-        if(userWithEmailExist){throw new Error("User with this email Already Exists")}
+  const userWithPhoneExist = await User.findOne({ phone: phone });
 
-        const userWithPhoneExist = await User.findOne({phone:data.phone})
+  if (userWithPhoneExist) {
+    throw new Error("User with this phone Already Exists");
+  }
 
-        if(userWithPhoneExist){throw new Error("User with this phone Already Exists")}
+  const hashedPasword = bcrypt.hashSync(password, 10);
 
+  return await User.create({
+    email,
+    fullName,
+    phone,
+    password: hashedPasword,
+    role: "user",
+  });
+};
 
-        return await User.create(data)
+const loginService = async ({ email, password }) => {
+  
+    const result = await User.findOne({ email });
 
+    if (!result) {
+      throw new Error("Email not registered");
+    }
 
-}
+    const savedPassword = result.password;
 
+    const isPasswordMatched = bcrypt.compareSync(password,savedPassword)
 
-export {registerService}
+    if (!isPasswordMatched) {
+        console.log(savedPassword ,password);
+      throw new Error("Password didn't match");
+    }
 
+    return result;
+ 
+};
 
-
+export { registerService, loginService };

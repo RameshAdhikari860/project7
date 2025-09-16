@@ -26,8 +26,13 @@ const registerService = async ({ email, password, phone, fullName }) => {
 };
 
 const loginService = async ({ email, password }) => {
+
+
+ 
   
     const result = await User.findOne({ email });
+
+   
 
     if (!result) {
       throw new Error("Email not registered");
@@ -38,11 +43,14 @@ const loginService = async ({ email, password }) => {
     const isPasswordMatched = bcrypt.compareSync(password,savedPassword)
 
     if (!isPasswordMatched) {
-        console.log(savedPassword ,password);
+       
       throw new Error("Password didn't match");
     }
+ 
 
     return result;
+
+    
  
 };
 

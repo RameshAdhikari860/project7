@@ -2,13 +2,18 @@ import express from 'express'
 import { connectDb } from './config/database.js'
 import articleRoutes from './routes/articleRoutes.js'
 import authRoutes from './routes/authRoute.js'
+import { configDotenv } from 'dotenv'
+import cookieParser from 'cookie-parser'
+
 
 
 const app = express()
 
-
+configDotenv()
 
 app.use(express.json())
+
+app.use(cookieParser())
 
 connectDb()
 
@@ -18,6 +23,8 @@ connectDb()
 app.use('/article',articleRoutes)
 
 app.use('/auth',authRoutes)
+
+
 
 
 

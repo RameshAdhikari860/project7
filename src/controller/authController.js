@@ -2,6 +2,7 @@ import { StrictMode } from "react"
 import { validCountriesNumber } from "../constant/validNumbers.js"
 import { loginService, registerService } from "../services/authService.js"
 import validator from 'validator'
+import jwt from 'jsonwebtoken'
 
 const register =async (req,res)=>{
 
@@ -52,13 +53,29 @@ const login =  async (req,res)=>{
             return res.status(400).json({message:"Password is required"})
         }
 
-     const data=   await  loginService({email,password})
-
+        console.log("clg from ",email,password);
+        const data =   await  loginService({email,password})
+        
+    
         if(data){
+
+            const payload = {
+                email : data.email,
+                fullName : data.fullName,
+                role  : data.role,
+                id : data.id,
+                phone : data.phone
+            }
+
+            const token = jwt.sign(payload,process.env.JWT_SECRET,{ expiresIn: 60 * 60 })
+
+
+            res.cookie('token',token)
            
             return res.status(200).json({
                 message: "Login Successful",
-                data
+                data:payload,
+                token
             })
         }
 
@@ -68,6 +85,7 @@ const login =  async (req,res)=>{
         
 
     } catch (error) {
+        console.log(error);
         return res.status(400).send("error to login ",error)
     }
 
